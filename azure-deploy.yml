@@ -1,0 +1,46 @@
+name: Deploy Azure Function and Update APIM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Azure Functions Core Tools
+        run: npm install -g azure-functions-core-tools@4 --unsafe-perm true
+
+      - name: Install dependencies
+        run: npm install
+
+      # Optional: Build step if you have a build script
+      # - name: Build the application
+      #   run: npm run build
+
+      - name: Publish to Azure Functions
+        env:
+          AZURE_FUNCTIONAPP_PUBLISH_PROFILE: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+        run: |
+          echo "${AZURE_FUNCTIONAPP_PUBLISH_PROFILE}" > publishProfile.publishsettings
+          func azure functionapp publish <YOUR_FUNCTION_APP_NAME> --publish-profile-path publishProfile.publishsettings --javascript
+
+      # Optional: Update Azure API Management
+      # - name: Azure Login
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # - name: Update API Management
+      #   run: |
+      #     az apim api import --resource-group my-resource-group --service-name mrp-hellow-world --path /hello-world --api-id 12345 --specification-format openapi --specification-path openapi.yaml
