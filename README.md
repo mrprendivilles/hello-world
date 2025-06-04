@@ -1,6 +1,6 @@
 # Hello World API
 
-This project is a simple Node.js application that sets up an Express server and responds with "Hello, World!" when accessed. It is designed to be deployed to Azure using GitHub Actions.
+This test project is a simple Node.js application that sets up an Express server and responds with "Hello, World!" when accessed. It is designed to be deployed to Azure using GitHub Actions.
 
 ## Project Structure
 
