@@ -1,0 +1,26 @@
+{
+  "name": "hello-world-api",
+  "version": "1.0.0",
+  "description": "A simple Hello World API using Express",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/hello-world-api.git"
+  },
+  "keywords": [
+    "api",
+    "express",
+    "hello world"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
